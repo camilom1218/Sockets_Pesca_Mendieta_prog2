@@ -31,7 +31,7 @@ public class Servidor extends Thread {
 				writer.flush();
 
 				String pregunta;
-				try (BufferedReader LPreguntas = new BufferedReader(new FileReader("C:\\Users\\Camilo Mendieta\\git\\Sockets_Pesca_Mendieta_prog2\\ServidorMendieta\\Data\\Preguntas.txt"))) {
+				try (BufferedReader LPreguntas = new BufferedReader(new FileReader("Preguntas.txt"))) {
 					while ((pregunta = LPreguntas.readLine()) != null) {
 						writer.write(pregunta);
 						writer.newLine();
@@ -73,7 +73,7 @@ public class Servidor extends Thread {
 	}
 
 	private String obtenerRespuesta(int numeroPregunta) {
-		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Camilo Mendieta\\git\\Sockets_Pesca_Mendieta_prog2\\ServidorMendieta\\Data\\Respuestas.txt"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("Respuestas.txt"))) {
 			String linea;
 			while ((linea = br.readLine()) != null) {
 				String[] partes = linea.split(":");
