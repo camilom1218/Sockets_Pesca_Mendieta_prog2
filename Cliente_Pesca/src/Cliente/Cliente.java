@@ -1,72 +1,71 @@
 package Cliente;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Cliente  extends Thread{
-
+public class Cliente extends Thread {
 	private Socket socket;
-	private BufferedReader lec;
-	private BufferedWriter esc;
-	private int port;
+	private BufferedReader reader;
+	private BufferedWriter writer;
 	private String address;
+	private int port;
 	private Scanner scanner;
-	
+
 	public Cliente(String address, int port) {
 		this.socket = null;
-		this.lec = null;
-		this.esc = null;
-		this.port = port;
+		this.reader = null;
+		this.writer = null;
 		this.address = address;
+		this.port = port;
+		this.scanner = new Scanner(System.in);
 	}
-	
+
 	public void run() {
 		try {
 			socket = new Socket(this.address, this.port);
 			System.out.println("Conectado al servidor");
-			
-			this.lec = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			this.esc = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			
-			String saludo = lec.readLine();
+
+			this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+			this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+			String saludo = reader.readLine();
 			System.out.println(saludo);
-			System.out.println("Elige el numero de pregunta que quieres que respnda o escribe 0 para salir");
-		
+			System.out.println("Elige el número de la pregunta que quieres hacer (0 para salir): ");
+
 			String pregunta;
-			while(!(pregunta = lec.readLine()).equals(""));
+			while (!(pregunta = reader.readLine()).equals("")) {
 				System.out.println(pregunta);
-		
-			while(true) {
+			}
+
+			while (true) {
+
 				int numeroPregunta = scanner.nextInt();
 				scanner.nextLine();
-				esc.newLine();
-				esc.flush();
-				
-				if(numeroPregunta == 0) {
+				writer.write(Integer.toString(numeroPregunta));
+				writer.newLine();
+				writer.flush();
+
+				if (numeroPregunta == 0) {
 					System.out.println("El servidor fue cerrado");
 					break;
 				}
-				String respuesta = lec.readLine();
-				System.out.println("Respuesta: "+respuesta);
+
+				String respuesta = reader.readLine();
+				System.out.println("Respuesta del servidor: " + respuesta);
 			}
-			lec.close();
-			esc.close();
+
+			reader.close();
+			writer.close();
 			socket.close();
-	
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-}
-
-	public static void main(String[] args) {
-		Cliente cliente = new Cliente("127.0.0.1", 5000);
-		cliente.run();
-
 	}
 
+	public static void main(String args[]) {
+		Cliente client = new Cliente("127.0.0.1", 5000);
+		client.run();
+	}
 }
