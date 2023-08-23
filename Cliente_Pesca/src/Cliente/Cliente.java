@@ -36,10 +36,23 @@ public class Cliente  extends Thread{
 			String saludo = lec.readLine();
 			System.out.println(saludo);
 			System.out.println("Elige el numero de pregunta que quieres que respnda o escribe 0 para salir");
+		
+			String pregunta;
+			while(!(pregunta = lec.readLine()).equals(""));
+				System.out.println(pregunta);
+		
+			while(true) {
+				int numeroPregunta = scanner.nextInt();
+				scanner.nextLine();
+				esc.newLine();
+				esc.flush();
+			}
+	
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+}
+
 	public static void main(String[] args) {
 		
 
