@@ -46,6 +46,11 @@ public class Cliente  extends Thread{
 				scanner.nextLine();
 				esc.newLine();
 				esc.flush();
+				
+				if(numeroPregunta == 0) {
+					System.out.println("El servidor fue cerrado");
+					break;
+				}
 			}
 	
 		}catch (IOException e) {
