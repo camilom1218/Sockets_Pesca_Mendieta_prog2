@@ -42,12 +42,37 @@ public class Servidor extends Thread {
 					writer.newLine();
 					writer.flush();
 					
-			}
+					while(true) {
+						String mensajeCliente = reader.readLine();
+						int numeroPregunta = Integer.parseInt(mensajeCliente);
+						if(numeroPregunta> 20) {
+							writer.write("Numero no valido. Por favor ingresa un numero entre 1 y 20");
+						}else if(numeroPregunta == 0) {
+							break;
+						}else {
+							String respuesta = obtenerRespuesta(numeroPregunta);
+							if (respuesta != null) {
+								writer.write(respuesta);
+							}else {
+								writer.write("Pregunta no valida.");
+							}
+							writer.newLine();
+							writer.flush();	
+							
+						}
+					}
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-
+	}catch(IOException e) {
+		e.printStackTrace();
 	}
+}
+	
+	
+	
+	
+	
 }
 
 	
