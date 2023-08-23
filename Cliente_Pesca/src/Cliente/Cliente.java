@@ -51,7 +51,12 @@ public class Cliente  extends Thread{
 					System.out.println("El servidor fue cerrado");
 					break;
 				}
+				String respuesta = lec.readLine();
+				System.out.println("Respuesta: "+respuesta);
 			}
+			lec.close();
+			esc.close();
+			socket.close();
 	
 		}catch (IOException e) {
 			e.printStackTrace();
@@ -59,7 +64,8 @@ public class Cliente  extends Thread{
 }
 
 	public static void main(String[] args) {
-		
+		Cliente cliente = new Cliente("127.0.0.1", 5000);
+		cliente.run();
 
 	}
 
