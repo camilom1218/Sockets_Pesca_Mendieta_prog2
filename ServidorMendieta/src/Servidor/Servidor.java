@@ -29,11 +29,24 @@ public class Servidor extends Thread {
 					writer.newLine();
 					writer.flush();
 					
+					String pregunta;
+					try(BufferedReader LPreguntas = new BufferedReader(new FileReader("preguntas.txt"))){
+						while((pregunta = LPreguntas.readLine())!= null) {
+							writer.write(pregunta);
+							writer.newLine();
+						}
+					}catch(IOException e) {
+						e.printStackTrace();
+					}
+					writer.write("");
+					writer.newLine();
+					writer.flush();
 					
 			}
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 }
 

@@ -1,0 +1,20 @@
+1:Como te llamas?
+2:De donde eres?
+3:Hace cuanto te crearon?
+4:Quien te creo?
+5:Que funciones tienes?
+6:Que prefieres lol o valorant?
+7:Quien es mejor messi o cristiano?
+8:Sabes pasar un codigo de java a C++?
+9:Que haces en tu tiempo libre?
+10:Cual es tu deporte favorito de ver?
+11:Prefieres el dia o la noche?
+12:Tienes otros amigos porgramas?
+13:Prefieres iphone o android?
+14:Tienes alguna serie favorita?
+15:Si te preguntamos muchas cosas te crasheas?
+16:Tienes alguna falla por la que te totees?
+17:Para que fuiste programada?
+18:Raizen o Intel?
+19:Adidas o Nike
+20:Que comida crees que se ve interesante?
