@@ -68,9 +68,28 @@ public class Servidor extends Thread {
 		e.printStackTrace();
 	}
 }
+	private String obtenerRespuesta(int numeroPregunta) {
+		try (BufferedReader br = new BufferedReader(new FileReader("Respuesta.txt"))){
+			String linea;
+			while((linea = br.readLine())!= null) {
+				String [] partes = linea.split(":");
+				if(partes.length >= 2) {
+					int numeroRespuesta = Integer.parseInt(partes[0].trim());
+					if(numeroRespuesta == numeroPregunta) {
+						return partes[1].trim();					}
+				}
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
-	
+	public static void main(String[] args) {
+		Servidor servidorr = new Servidor(5000);
+		servidorr.start();
+	}
 	
 	
 }
